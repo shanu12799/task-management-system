@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import "./App.css";
+import Home from "./Page/Home";
+import SignIn from "./Page/SignIn";
+import { useAuth } from "./context/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useTaskContext } from "./context/TaskContext";
 
 function App() {
+  const { userId } = useAuth();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ToastContainer />
+      {userId ? <Home /> : <SignIn />}
     </div>
   );
 }
